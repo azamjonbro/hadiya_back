@@ -3,7 +3,7 @@ const { Product } = require('../models');
 exports.createProduct = async (req, res) => {
     try {
         if (req.files) {
-            req.body.images = req.files.map(f => f.path);
+            req.body.images = req.files.map(f => '/uploads/' + f.filename);
         }
         const product = await Product.create(req.body);
         res.status(201).json(product);
@@ -36,7 +36,7 @@ exports.updateProduct = async (req, res) => {
         const product = await Product.findByPk(req.params.id);
         if (!product) return res.status(404).json({ message: 'Not found' });
         if (req.files && req.files.length > 0) {
-            req.body.images = req.files.map(f => f.path);
+            req.body.images = req.files.map(f => '/uploads/' + f.filename);
         }
         await product.update(req.body);
         res.status(200).json(product);
