@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken');
 
 exports.createSuperadmin = async (req, res) => {
     try {
+        const count = await Superadmin.count();
+        if (count > 0) {
+            return res.status(400).json({ message: 'Superadmin already exists' });
+        }
         const { password, ...otherData } = req.body;
         if (password) {
             otherData.password = await bcrypt.hash(password, 10);
