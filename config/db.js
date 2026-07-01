@@ -22,11 +22,8 @@ const sequelize = process.env.DATABASE_URL
 const connectDB = async () => {
     try {
         await sequelize.authenticate();
-        console.log('PostgreSQL connected...');
-        await sequelize.sync({ alter: true }); // Sync models
-        console.log('Models synced.');
+        await sequelize.sync({ alter: true });
     } catch (error) {
-        console.error('Error connecting to DB:', error);
         process.exit(1);
     }
 };
