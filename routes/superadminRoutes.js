@@ -129,20 +129,4 @@ router.get('/:id', controller.getSuperadminById);
  */
 router.put('/:id', controller.updateSuperadmin);
 
-/**
- * @swagger
- * /api/superadmin/{id}:
- *   delete:
- *     summary: Delete Superadmin
- *     tags: [Superadmin]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema: { type: integer }
- *     responses:
- *       200: { description: Deleted }
- */
-router.delete('/:id', controller.deleteSuperadmin);
-
 module.exports = router;
