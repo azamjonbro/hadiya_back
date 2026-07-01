@@ -22,19 +22,13 @@ const controller = require('../controllers/userController');
  *           schema:
  *             type: object
  *             example:
- *               name: "Azizbek"
- *               email: "azizbek@gmail.com"
+ *               firstName: "Azizbek"
+ *               lastName: "Tohirov"
  *               phone: "+998991234567"
- *               likesHistory: "liked_watches"
- *               OrderHistory: "ordered_watches"
- *               cartHistory: "cart_items"
  *             properties:
- *               name: { type: string }
- *               email: { type: string }
+ *               firstName: { type: string }
+ *               lastName: { type: string }
  *               phone: { type: string }
- *               likesHistory: { type: string }
- *               OrderHistory: { type: string }
- *               cartHistory: { type: string }
  *     responses:
  *       201: { description: Created }
  */
@@ -85,19 +79,13 @@ router.get('/:id', controller.getUserById);
  *           schema:
  *             type: object
  *             example:
- *               name: "Azizbek Updated"
- *               email: "azizbek_new@gmail.com"
+ *               firstName: "Azizbek Updated"
+ *               lastName: "Tohirov Updated"
  *               phone: "+998991234588"
- *               likesHistory: "liked_watches_2"
- *               OrderHistory: "ordered_watches_2"
- *               cartHistory: "cart_items_2"
  *             properties:
- *               name: { type: string }
- *               email: { type: string }
+ *               firstName: { type: string }
+ *               lastName: { type: string }
  *               phone: { type: string }
- *               likesHistory: { type: string }
- *               OrderHistory: { type: string }
- *               cartHistory: { type: string }
  *     responses:
  *       200: { description: Updated }
  */

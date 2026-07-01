@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     password: { type: DataTypes.STRING },
     phone: { type: DataTypes.STRING },
     status: { type: DataTypes.BOOLEAN },
-    history: { type: DataTypes.JSON }
+    history: { type: DataTypes.JSON },
+    superadminId: { type: DataTypes.BIGINT }
   }, { timestamps: true });
 
   Manager.associate = (models) => {

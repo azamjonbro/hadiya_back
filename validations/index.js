@@ -22,13 +22,15 @@ const validations = {
       username: Joi.string().required(),
       password: Joi.string().required(),
       email: Joi.string().email().required(),
-      phone: Joi.string().required()
+      phone: Joi.string().required(),
+      superadminId: Joi.number().required()
     }),
     update: Joi.object({
       username: Joi.string(),
       password: Joi.string(),
       email: Joi.string().email(),
-      phone: Joi.string()
+      phone: Joi.string(),
+      superadminId: Joi.number()
     })
   },
   category: {
@@ -61,15 +63,13 @@ const validations = {
   },
   user: {
     create: Joi.object({
-      name: Joi.string().required(),
-      email: Joi.string().email().required(),
-      password: Joi.string().required(),
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required(),
       phone: Joi.string().required()
     }),
     update: Joi.object({
-      name: Joi.string(),
-      email: Joi.string().email(),
-      password: Joi.string(),
+      firstName: Joi.string(),
+      lastName: Joi.string(),
       phone: Joi.string()
     })
   }

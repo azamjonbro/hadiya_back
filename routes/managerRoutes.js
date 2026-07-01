@@ -28,6 +28,7 @@ const controller = require('../controllers/managerController');
  *               phone: "+998941112233"
  *               status: true
  *               history: { "assignedTasks": 10 }
+ *               superadminId: 1
  *             properties:
  *               username: { type: string }
  *               password: { type: string }
@@ -35,6 +36,7 @@ const controller = require('../controllers/managerController');
  *               phone: { type: string }
  *               status: { type: boolean }
  *               history: { type: object }
+ *               superadminId: { type: integer }
  *     responses:
  *       201: { description: Created }
  */
@@ -114,12 +116,14 @@ router.get('/:id', controller.getManagerById);
  *               phone: "+998941112244"
  *               status: false
  *               history: { "assignedTasks": 15 }
+ *               superadminId: 1
  *             properties:
  *               username: { type: string }
  *               email: { type: string }
  *               phone: { type: string }
  *               status: { type: boolean }
  *               history: { type: object }
+ *               superadminId: { type: integer }
  *     responses:
  *       200: { description: Updated }
  */

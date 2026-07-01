@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/productController');
+const upload = require('../config/multer');
 
 /**
  * @swagger
@@ -18,37 +19,47 @@ const controller = require('../controllers/productController');
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
- *             example:
- *               name: "Rolex Submariner"
- *               status: true
- *               history: { "views": 1500 }
- *               images: ["https://example.com/rolex1.jpg", "https://example.com/rolex2.jpg"]
- *               likes: "1250"
- *               quantity: "25"
- *               price: "15000"
- *               saleprice: "14500"
- *               salePercent: 5
- *               category: "Premium"
- *               categoryId: 1
  *             properties:
- *               name: { type: string }
- *               status: { type: boolean }
- *               history: { type: object }
- *               images: { type: array, items: { type: string } }
- *               likes: { type: string }
- *               quantity: { type: string }
- *               price: { type: string }
- *               saleprice: { type: string }
- *               salePercent: { type: integer }
- *               category: { type: string }
- *               categoryId: { type: integer }
+ *               name:
+ *                 type: string
+ *                 example: "Rolex Submariner"
+ *               status:
+ *                 type: boolean
+ *                 example: true
+ *               images:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: binary
+ *               likes:
+ *                 type: string
+ *                 example: "1250"
+ *               quantity:
+ *                 type: string
+ *                 example: "25"
+ *               price:
+ *                 type: string
+ *                 example: "15000"
+ *               saleprice:
+ *                 type: string
+ *                 example: "14500"
+ *               salePercent:
+ *                 type: integer
+ *                 example: 5
+ *               category:
+ *                 type: string
+ *                 example: "Premium"
+ *               categoryId:
+ *                 type: integer
+ *                 example: 1
  *     responses:
- *       201: { description: Created }
+ *       201:
+ *         description: Created
  */
-router.post('/', controller.createProduct);
+router.post('/', upload.array('images'), controller.createProduct);
 
 /**
  * @swagger
@@ -57,7 +68,8 @@ router.post('/', controller.createProduct);
  *     summary: Get all Products
  *     tags: [Product]
  *     responses:
- *       200: { description: Success }
+ *       200:
+ *         description: Success
  */
 router.get('/', controller.getAllProduct);
 
@@ -71,9 +83,11 @@ router.get('/', controller.getAllProduct);
  *       - in: path
  *         name: id
  *         required: true
- *         schema: { type: integer }
+ *         schema:
+ *           type: integer
  *     responses:
- *       200: { description: Success }
+ *       200:
+ *         description: Success
  */
 router.get('/:id', controller.getProductById);
 
@@ -87,41 +101,52 @@ router.get('/:id', controller.getProductById);
  *       - in: path
  *         name: id
  *         required: true
- *         schema: { type: integer }
+ *         schema:
+ *           type: integer
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
- *             example:
- *               name: "Rolex Submariner Updated"
- *               status: false
- *               history: { "views": 1600 }
- *               images: ["https://example.com/rolex1_new.jpg"]
- *               likes: "1300"
- *               quantity: "20"
- *               price: "16000"
- *               saleprice: "15000"
- *               salePercent: 10
- *               category: "Premium"
- *               categoryId: 1
  *             properties:
- *               name: { type: string }
- *               status: { type: boolean }
- *               history: { type: object }
- *               images: { type: array, items: { type: string } }
- *               likes: { type: string }
- *               quantity: { type: string }
- *               price: { type: string }
- *               saleprice: { type: string }
- *               salePercent: { type: integer }
- *               category: { type: string }
- *               categoryId: { type: integer }
+ *               name:
+ *                 type: string
+ *                 example: "Rolex Submariner Updated"
+ *               status:
+ *                 type: boolean
+ *                 example: false
+ *               images:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: binary
+ *               likes:
+ *                 type: string
+ *                 example: "1300"
+ *               quantity:
+ *                 type: string
+ *                 example: "20"
+ *               price:
+ *                 type: string
+ *                 example: "16000"
+ *               saleprice:
+ *                 type: string
+ *                 example: "15000"
+ *               salePercent:
+ *                 type: integer
+ *                 example: 10
+ *               category:
+ *                 type: string
+ *                 example: "Premium"
+ *               categoryId:
+ *                 type: integer
+ *                 example: 1
  *     responses:
- *       200: { description: Updated }
+ *       200:
+ *         description: Updated
  */
-router.put('/:id', controller.updateProduct);
+router.put('/:id', upload.array('images'), controller.updateProduct);
 
 /**
  * @swagger
@@ -133,9 +158,11 @@ router.put('/:id', controller.updateProduct);
  *       - in: path
  *         name: id
  *         required: true
- *         schema: { type: integer }
+ *         schema:
+ *           type: integer
  *     responses:
- *       200: { description: Deleted }
+ *       200:
+ *         description: Deleted
  */
 router.delete('/:id', controller.deleteProduct);
 
