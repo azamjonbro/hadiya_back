@@ -34,7 +34,9 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
+console.log("Connecting to PostgreSQL and syncing models...");
 sequelize.sync({ alter: true }).then(async () => {
+    console.log("Database synced successfully.");
     try {
         const { Superadmin } = require('./models');
         const bcrypt = require('bcryptjs');
@@ -49,16 +51,23 @@ sequelize.sync({ alter: true }).then(async () => {
                 phone: '+998901234567',
                 status: true
             });
+            console.log("Default superadmin created.");
         } else {
             adminUser.password = hashedPassword;
             await adminUser.save();
+            console.log("Default superadmin password verified/updated.");
         }
     } catch (err) {
-        // silent
+        console.error("Error verifying/creating default superadmin:", err);
     }
 
-    app.listen(PORT);
-    console.log(`Server is running on port ${PORT}`);
-}).catch(() => { });
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}).catch((err) => {
+    console.error("Sequelize startup error (Database connection failed):");
+    console.error(err);
+    process.exit(1);
+});
 
 module.exports = app;
