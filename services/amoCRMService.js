@@ -254,18 +254,25 @@ class AmoCRMService {
       const leadName = `Yangi buyurtma - ${fullName}`;
       console.log(`[AmoCRMService] Creating lead: "${leadName}" for Contact ID: ${contactId}`);
 
-      const payload = [
-        {
-          name: leadName,
-          _embedded: {
-            contacts: [
-              {
-                id: contactId
-              }
-            ]
-          }
+      const leadPayload = {
+        name: leadName,
+        _embedded: {
+          contacts: [
+            {
+              id: contactId
+            }
+          ]
         }
-      ];
+      };
+
+      if (process.env.AMO_PIPELINE_ID) {
+        leadPayload.pipeline_id = Number(process.env.AMO_PIPELINE_ID);
+      }
+      if (process.env.AMO_STATUS_ID) {
+        leadPayload.status_id = Number(process.env.AMO_STATUS_ID);
+      }
+
+      const payload = [leadPayload];
 
       const response = await client.post('/api/v4/leads', payload);
       const leadId = response.data?._embedded?.leads?.[0]?.id;
