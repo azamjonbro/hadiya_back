@@ -12,6 +12,7 @@ app.use(cors({
     'https://alharameenadmin.netlify.app',
     'https://alharameenuz.netlify.app',
     'https://alharameenuz.uz',
+    'http://alharameenuz.uz',
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost:3055'
