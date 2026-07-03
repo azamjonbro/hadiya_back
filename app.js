@@ -58,6 +58,7 @@ sequelize.sync({ alter: true }).then(async () => {
     }
 
     app.listen(PORT);
+    console.log(`Server is running on port ${PORT}`);
 }).catch(() => { });
 
 module.exports = app;
