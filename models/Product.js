@@ -2,7 +2,13 @@ module.exports = (sequelize, DataTypes) => {
   const Product = sequelize.define('Product', {
     id: { type: DataTypes.BIGINT, autoIncrement: true, primaryKey: true },
     name: { type: DataTypes.STRING },
-    status: { type: DataTypes.BOOLEAN },
+    status: { type: DataTypes.STRING }, // 'Active', 'Draft', 'Out of Stock'
+    sku: { type: DataTypes.STRING },
+    barcode: { type: DataTypes.STRING },
+    brand: { type: DataTypes.STRING },
+    shortDescription: { type: DataTypes.TEXT },
+    fullDescription: { type: DataTypes.TEXT },
+    characteristics: { type: DataTypes.JSON },
     history: { type: DataTypes.JSON },
     images: { type: DataTypes.JSON },
     likes: { type: DataTypes.STRING },
