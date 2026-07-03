@@ -9,5 +9,6 @@ router.use('/user', require('./userRoutes'));
 router.use('/likeshistory', require('./likesHistoryRoutes'));
 router.use('/carthistory', require('./cartHistoryRoutes'));
 router.use('/orderhistory', require('./orderHistoryRoutes'));
+router.use('/order', require('./orderRoutes'));
 
 module.exports = router;
