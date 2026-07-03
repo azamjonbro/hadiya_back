@@ -10,6 +10,8 @@ const app = express();
 app.use(cors({
   origin: [
     'https://alharameenadmin.netlify.app',
+    'https://alharameenuz.netlify.app',
+    'https://alharameenuz.uz',
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost:3055'
